@@ -1,0 +1,26 @@
+{
+  "name": "snagfiles",
+  "version": "0.0.0",
+  "description": "Sangfiles is an extremely basic tool for downloading files scraped from other files.",
+  "main": "scrape.js",
+  "dependencies": {
+    "cheerio": "~0.13.1",
+    "request": "~2.31.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jmwohl/snagfiles.git"
+  },
+  "keywords": [
+    "scrape"
+  ],
+  "author": "Jonathan Wohl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmwohl/snagfiles/issues"
+  }
+}
