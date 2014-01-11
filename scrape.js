@@ -8,20 +8,23 @@ var request = require('request'),
 
 // manage process args
 urlToScrape = process.argv[2] || null;
-pattern = process.argv[3] || 'a';
-dirToSave = process.argv[4] || 'test';
+pattern = process.argv[3] || "[href*='.pdf']";
+dirToSave = process.argv[4] ? 'downloads/' + process.argv[4] : 'downloads';
 
 //console.log(urlToScrape, pattern);
 
 if (!urlToScrape) {
-	console.log("No URL entered");
-	exit;
+	console.log("Please provide a URL as the first argument.");
+	process.exit();
 }
 
 request(urlToScrape, function(error, response, body) {
 	if (!error && response.statusCode == 200) {
 		//console.log(body);
-		fs.mkdirSync(dirToSave);
+		var stats = fs.statSync(dirToSave);
+		if (!stats.isDirectory()) {
+			fs.mkdirSync(dirToSave);
+		}
 		$ = cheerio.load(body);
 		var count = 0;
 		$(pattern).each(function() {
