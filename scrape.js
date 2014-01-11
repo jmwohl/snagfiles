@@ -19,22 +19,16 @@ if (!urlToScrape) {
 }
 
 // create downloads folder if it doesn't exist
-fs.existsSync('downloads', function(exists) {
-	console.log('exists: ', exists);
-	if (!exists) {
-		console.log('exists: ', exists);
-		fs.mkdirSync('downloads');
-	}
-});
+if(!fs.existsSync('downloads')) {
+	fs.mkdirSync('downloads');
+}
 
 request(urlToScrape, function(error, response, body) {
 	if (!error && response.statusCode == 200) {
 		// check if downloads dir exists
-		fs.existsSync('downloads/'+dirToSave, function(exists) {
-			if (!exists) {
-				fs.mkdirSync('downloads/'+dirToSave);
-			}
-		});
+		if(!fs.existsSync(dirToSave)) {
+			fs.mkdirSync(dirToSave);
+		}
 		$ = cheerio.load(body);
 		var count = 0;
 		$(pattern).each(function() {
